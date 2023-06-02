@@ -129,10 +129,13 @@ public class Program : GameWindow
         GL.DepthFunc(DepthFunction.Lequal);
 
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            
+        
         shader.Use();
-        texture.Use();
-        shader.LoadInteger("sampler", 0);
+        cubemap.Use();
+        
+        shader.LoadInteger("cubemap", 0);
+        shader.LoadMatrix4("projMatrix", camera.GetProjectionMatrix());
+        shader.LoadMatrix4("invViewMatrix", camera.GetViewMatrix().Inverted());
         shader.LoadMatrix4("mvp", camera.GetProjectionViewMatrix());
         rectangle.Render();
 
