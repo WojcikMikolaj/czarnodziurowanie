@@ -6,7 +6,7 @@ using System.Text;
 using OpenTK.Graphics.OpenGL4;
 using StbImageSharp;
 
-namespace TemplateProject;
+namespace BlackHole;
 
 public class Texture : IDisposable
 {
@@ -24,7 +24,7 @@ public class Texture : IDisposable
     private void LoadTexture(string path, Options? options = null)
     {
         var assembly = Assembly.GetExecutingAssembly();
-        using var stream = assembly.GetManifestResourceStream($"TemplateProject.Resources.{path}");
+        using var stream = assembly.GetManifestResourceStream($"BlackHole.Resources.{path}");
 
         ImageResult image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
 

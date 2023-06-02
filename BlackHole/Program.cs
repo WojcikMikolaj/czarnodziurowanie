@@ -7,7 +7,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using TemplateProject.ImGuiUtils;
 using ShaderType = OpenTK.Graphics.OpenGL4.ShaderType;
 
-namespace TemplateProject;
+namespace BlackHole;
 
 public class Program : GameWindow
 {
@@ -18,6 +18,7 @@ public class Program : GameWindow
     private Mesh rectangle;
     private Camera camera;
     private Texture texture;
+    private TextureCube cubemap;
 
     public static void Main(string[] args)
     {
@@ -39,10 +40,10 @@ public class Program : GameWindow
         camera = new Camera(new FirstPersonControl(), new PerspectiveView());
 
         float[] vertices = {
-            0.5f,  0.5f, 2.0f,
-            0.5f, -0.5f, 2.0f,
-            -0.5f, -0.5f, 2.0f,
-            -0.5f,  0.5f, 2.0f
+            1f,  1f, 1f,
+            1f, -1f, 1f,
+            -1f, -1f, 1f,
+            -1f,  1f, 1f
         };
         float[] texCoords = {
             0.0f, 0.0f,
@@ -56,8 +57,19 @@ public class Program : GameWindow
             1, 2, 3
         };  
         rectangle = new Mesh(PrimitiveType.Triangles, indices, (vertices, 0, 3), (texCoords, 1, 2));
-
+        
         texture = new Texture("texture.jpg");
+
+        cubemap = new TextureCube(new (string path, TextureTarget side)[
+        ]
+        {
+            ("l.png", TextureTarget.TextureCubeMapNegativeX),
+            ("s.png", TextureTarget.TextureCubeMapNegativeZ),
+            ("p.png", TextureTarget.TextureCubeMapPositiveX),
+            ("g.png", TextureTarget.TextureCubeMapPositiveY),
+            ("d.png", TextureTarget.TextureCubeMapNegativeY),
+            ("dd.png", TextureTarget.TextureCubeMapPositiveZ),
+        });
             
         GL.ClearColor(0.4f, 0.7f, 0.9f, 1.0f);
         GL.Disable(EnableCap.CullFace);

@@ -6,7 +6,7 @@ using System.Text;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
-namespace TemplateProject;
+namespace BlackHole;
 
 public class Shader : IDisposable
 {
@@ -40,7 +40,7 @@ public class Shader : IDisposable
     private string ReadSource(string path)
     {
         var assembly = Assembly.GetExecutingAssembly();
-        using var stream = assembly.GetManifestResourceStream($"TemplateProject.Resources.{path}");
+        using var stream = assembly.GetManifestResourceStream($"BlackHole.Resources.{path}");
         if (stream == null) throw new Exception("Shader not found!");
         using var reader = new StreamReader(stream, Encoding.UTF8);
         return reader.ReadToEnd();
