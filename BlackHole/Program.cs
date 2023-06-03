@@ -19,6 +19,8 @@ public class Program : GameWindow
     private Camera camera;
     private Texture texture;
     private TextureCube cubemap;
+    private int _mass;
+    private int _distance;
 
     public static void Main(string[] args)
     {
@@ -146,8 +148,32 @@ public class Program : GameWindow
 
     private void RenderGui()
     {
-        ImGui.ShowDemoWindow();
-            
+        ImGui.Begin("Parametry");
+        if (ImGui.SliderInt("Masa", ref _mass, 1, 300))
+        {
+            if (_mass < 1)
+            {
+                _mass = 1;
+            }
+
+            if (_mass > 300)
+            {
+                _mass = 300;
+            }
+        }
+        if(ImGui.SliderInt("Dystans", ref _distance, 1, 300))
+        {
+            if (_distance < 1)
+            {
+                _distance = 1;
+            }
+
+            if (_distance > 300)
+            {
+                _distance = 300;
+            }
+        }
+        ImGui.End();
         controller.Render();
     }
 
