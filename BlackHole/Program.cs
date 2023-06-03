@@ -19,8 +19,8 @@ public class Program : GameWindow
     private Camera camera;
     private Texture texture;
     private TextureCube cubemap;
-    private int _mass;
-    private int _distance;
+    private float _mass = 1;
+    private float _distance = 1000;
 
     public static void Main(string[] args)
     {
@@ -139,6 +139,8 @@ public class Program : GameWindow
         shader.LoadMatrix4("projMatrix", camera.GetProjectionMatrix());
         shader.LoadMatrix4("invViewMatrix", camera.GetViewMatrix().Inverted());
         shader.LoadMatrix4("mvp", camera.GetProjectionViewMatrix());
+        shader.LoadFloat("mass", _mass);
+        shader.LoadFloat3("cameraPos", camera.Position - camera.Front*camera.Distance);
         rectangle.Render();
 
         RenderGui();
@@ -149,29 +151,31 @@ public class Program : GameWindow
     private void RenderGui()
     {
         ImGui.Begin("Parametry");
-        if (ImGui.SliderInt("Masa", ref _mass, 1, 300))
+        if (ImGui.SliderFloat("Masa", ref _mass, 1, 1000))
         {
             if (_mass < 1)
             {
                 _mass = 1;
             }
 
-            if (_mass > 300)
+            if (_mass > 1000)
             {
-                _mass = 300;
+                _mass = 1000;
             }
         }
-        if(ImGui.SliderInt("Dystans", ref _distance, 1, 300))
+        if(ImGui.SliderFloat("Dystans", ref _distance, 1, 1000))
         {
             if (_distance < 1)
             {
                 _distance = 1;
             }
 
-            if (_distance > 300)
+            if (_distance > 1000)
             {
-                _distance = 300;
+                _distance = 1000;
             }
+
+            camera.Distance = _distance;
         }
         ImGui.End();
         controller.Render();

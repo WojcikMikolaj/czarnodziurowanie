@@ -13,6 +13,8 @@ public class Camera
     public Vector3 Right { get; private set; } = Vector3.UnitX;
     public float Aspect { get; set; } = 16f / 9f;
     public Vector3 Position { get; private set; } = Vector3.Zero;
+
+    public float Distance { get; set; } = 1;
     
     private float _pitch;
     public float Pitch
@@ -74,7 +76,7 @@ public class Camera
 
     public Matrix4 GetViewMatrix()
     {
-        return Matrix4.LookAt(Position, Position + Front, Up);
+        return Matrix4.LookAt(Position - Front * Distance, Position, Up);
     }
 
     public Matrix4 GetProjectionMatrix()
