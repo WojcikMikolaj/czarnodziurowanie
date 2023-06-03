@@ -2,8 +2,6 @@
 
 layout (location = 0) in vec3 pos;
 layout (location = 1) in vec2 tex;
-layout (location = 2) in mat4 projMatrix;
-layout (location = 3) in mat4 invViewMatrix;
 
 struct PSInput
 {
@@ -15,6 +13,8 @@ struct PSInput
 
 out PSInput input;
 
+uniform mat4 projMatrix;
+uniform mat4 invViewMatrix;
 uniform mat4 mvp;
 
 PSInput GetRay()

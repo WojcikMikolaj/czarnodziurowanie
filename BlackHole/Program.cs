@@ -63,12 +63,12 @@ public class Program : GameWindow
         cubemap = new TextureCube(new (string path, TextureTarget side)[
         ]
         {
-            ("l.png", TextureTarget.TextureCubeMapNegativeX),
-            ("s.png", TextureTarget.TextureCubeMapNegativeZ),
-            ("p.png", TextureTarget.TextureCubeMapPositiveX),
-            ("g.png", TextureTarget.TextureCubeMapPositiveY),
-            ("d.png", TextureTarget.TextureCubeMapNegativeY),
-            ("dd.png", TextureTarget.TextureCubeMapPositiveZ),
+            ("X-.png", TextureTarget.TextureCubeMapNegativeX),
+            ("Z-.png", TextureTarget.TextureCubeMapNegativeZ),
+            ("X+.png", TextureTarget.TextureCubeMapPositiveX),
+            ("Y+.png", TextureTarget.TextureCubeMapPositiveY),
+            ("Y-.png", TextureTarget.TextureCubeMapNegativeY),
+            ("Z+.png", TextureTarget.TextureCubeMapPositiveZ),
         });
             
         GL.ClearColor(0.4f, 0.7f, 0.9f, 1.0f);
