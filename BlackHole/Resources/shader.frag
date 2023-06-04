@@ -56,7 +56,7 @@ float Integrate(float w1, float b)
     float t = 0;
     for (int i = 0; i < iterCount; i++)
     {
-        sum = sum + h * FunctionAtW(t + hOver2, b);
+        sum = sum + h * pow(FunctionAtW(t + hOver2, b),-0.5f);
         t = t + h;
     }
     return sum;
@@ -110,7 +110,7 @@ void main()
     float b = length(cameraVec - dot(cameraVec, normalize(input.viewVec.xyz)));   
     if (b > sqrt(27.0) * mass)
     {
-        float deltaPhi = Integrate(FindRoot(b), b);
+        float deltaPhi = 2*Integrate(FindRoot(b), b);
         float foldAngle = deltaPhi - PI;
 
         vec3 rotationAxis = cross(normalize(input.viewVec.xyz), cameraPos);

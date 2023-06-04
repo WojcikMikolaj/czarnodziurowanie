@@ -29,7 +29,7 @@ PSInput GetRay()
     // Conevert point pos from persepctive to camera and world
     vec4 viewVec = vec4(projXInv * pos.x, projYInv * pos.y, -1, 0);
     viewVec = invViewMatrix * viewVec;
-    o.viewVec = viewVec;
+    o.viewVec = normalize(viewVec);
 
     return o;
 }
